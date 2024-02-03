@@ -36,7 +36,6 @@ app.get('/', (req, res) => {
 
 // Endpoint for uploading extension files
 app.post('/api/upload', upload.single('extension'), (req, res) => {
-  conapp.post('/api/upload', upload.single('extension'), (req, res) => {
   const file = req.file;
   const extensionName = req.body.extensionName; // Extract extension name from form data
   if (!file || !extensionName) {
@@ -59,7 +58,6 @@ app.post('/api/upload', upload.single('extension'), (req, res) => {
   const extensionURL = `https://opensnail.onrender.com/api/download/${fileName}`;
   res.send(extensionURL);
 });
-
 
 // Endpoint to download uploaded files
 app.get('/api/download/:filename', (req, res) => {
