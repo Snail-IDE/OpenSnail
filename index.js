@@ -36,16 +36,18 @@ app.get('/', (req, res) => {
 
 // Endpoint for uploading extension files
 app.post('/api/upload', upload.single('extension'), (req, res) => {
+  conapp.post('/api/upload', upload.single('extension'), (req, res) => {
   const file = req.file;
-  if (!file) {
-    return res.status(400).send('No file uploaded.');
+  const extensionName = req.body.extensionName; // Extract extension name from form data
+  if (!file || !extensionName) {
+    return res.status(400).send('No file or extension name provided.');
   }
   
   // Generate a random code for the file name
   const randomCode = generateRandomCode();
 
-  // Construct the file name as per user-provided name and random code
-const fileName = `${req.body.name}-${randomCode}.js`;
+  // Construct the file name using the provided extension name and random code
+  const fileName = `${extensionName}-${randomCode}.js`;
 
   // Store the uploaded file and its upload time in memory
   uploadedFiles[fileName] = {
@@ -55,8 +57,9 @@ const fileName = `${req.body.name}-${randomCode}.js`;
 
   // Return the URL to the uploaded extension
   const extensionURL = `https://opensnail.onrender.com/api/download/${fileName}`;
-  res.send(`File uploaded successfully. Extension URL: ${extensionURL}`);
+  res.send(extensionURL);
 });
+
 
 // Endpoint to download uploaded files
 app.get('/api/download/:filename', (req, res) => {
