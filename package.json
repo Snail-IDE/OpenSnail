@@ -1,1 +1,12 @@
-
+{
+  "name": "OpenSnail",
+  "version": "1.0.0",
+  "description": "API to be used in extensions lololol",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
