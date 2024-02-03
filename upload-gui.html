@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload JavaScript File</title>
+</head>
+<body>
+  <h2>Upload JavaScript File</h2>
+  <form id="uploadForm" enctype="multipart/form-data">
+    <label for="file">Choose a JavaScript file:</label><br>
+    <input type="file" id="file" name="extension" accept=".js"><br>
+    <label for="extensionName">Extension Name (before random code):</label><br>
+    <input type="text" id="extensionName" name="extensionName"><br><br>
+    <button type="submit">Upload</button>
+  </form>
+  <div id="response"></div>
+
+  <script>
+    document.getElementById('uploadForm').addEventListener('submit', async function(event) {
+      event.preventDefault();
+      const form = event.target;
+      const formData = new FormData(form);
+
+      try {
+        const response = await fetch('/api/upload', {
+          method: 'POST',
+          body: formData
+        });
+
+        const data = await response.text();
+        document.getElementById('response').innerHTML = `File uploaded successfully. Extension URL: <a href="${data}" target="_blank">${data}</a>`;
+      } catch (error) {
+        document.getElementById('response').textContent = `Error: ${error.message}`;
+      }
+    });
+  </script>
+</body>
+</html>
