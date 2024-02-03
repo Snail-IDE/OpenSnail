@@ -34,6 +34,10 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+app.get('/extra/up', (req, res) => {
+  res.send('If you see this, the server is up!');
+});
+
 // Endpoint for uploading extension files
 app.post('/api/upload', upload.single('extension'), (req, res) => {
   const file = req.file;
