@@ -4,11 +4,13 @@ const multer = require('multer');
 const app = express();
 const port = 3000;
 
-// Serve static files from the root directory
-app.use(express.static(__dirname))
-// Route handler for the root URL ("/")
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+// In-memory store for uploaded files and their upload times
+let uploadedFiles = {};
+
+// Function to generate a random 6-digit code
+const generateRandomCode = () => {
+  return Math.floor(100000 + Math.random() * 900000);
+};
 
 // Set up Multer for file uploads
 const storage = multer.memoryStorage();
@@ -24,13 +26,13 @@ const upload = multer({
   }
 });
 
-// In-memory store for uploaded files and their upload times
-let uploadedFiles = {};
+// Serve static files from the root directory
+app.use(express.static(__dirname));
 
-// Function to generate a random 6-digit code
-const generateRandomCode = () => {
-  return Math.floor(100000 + Math.random() * 900000);
-};
+// Route handler for the root URL ("/")
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
 
 // Endpoint for uploading extension files
 app.post('/api/upload', upload.single('extension'), (req, res) => {
