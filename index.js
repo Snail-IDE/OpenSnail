@@ -41,6 +41,11 @@ app.post('/api/upload', upload.single('extension'), (req, res) => {
   if (!file || !extensionName) {
     return res.status(400).send('No file or extension name provided.');
   }
+
+  // Check if extension name contains spaces
+  if (extensionName.includes(' ')) {
+    return res.status(400).send('Extension name cannot contain spaces.');
+  }
   
   // Generate a random code for the file name
   const randomCode = generateRandomCode();
@@ -86,3 +91,4 @@ setInterval(() => {
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
+      
