@@ -45,7 +45,7 @@ app.post('/api/upload', upload.single('extension'), (req, res) => {
   const randomCode = generateRandomCode();
 
   // Construct the file name as per user-provided name and random code
-  const fileName = `${randomCode}.js`;
+const fileName = `${req.body.name}-${randomCode}.js`;
 
   // Store the uploaded file and its upload time in memory
   uploadedFiles[fileName] = {
