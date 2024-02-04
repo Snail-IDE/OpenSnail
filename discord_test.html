@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discord Authentication Example</title>
+</head>
+<body>
+  <h1>Welcome to Discord Authentication</h1>
+  <p>Click the button below to authenticate with Discord:</p>
+  <button onclick="redirectToDiscord()">Authenticate with Discord</button>
+
+  <div id="userData" style="display: none;">
+    <h2>User Data</h2>
+    <p><strong>Username:</strong> <span id="username"></span></p>
+    <img id="profilePicture" src="" alt="Profile Picture">
+    <p><strong>Auth Token:</strong> <span id="authToken"></span></p>
+  </div>
+
+  <script>
+    function redirectToDiscord() {
+      window.location.href = 'http://localhost:3000/auth/discord';
+    }
+
+    function displayUserData(userData) {
+      document.getElementById('username').textContent = userData.username;
+      document.getElementById('profilePicture').src = userData.profile_picture;
+      document.getElementById('authToken').textContent = userData.auth_token;
+
+      document.getElementById('userData').style.display = 'block';
+    }
+
+    // Check if there's user data in the URL query parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('username') && urlParams.has('profile_picture') && urlParams.has('auth_token')) {
+      const userData = {
+        username: urlParams.get('username'),
+        profile_picture: urlParams.get('profile_picture'),
+        auth_token: urlParams.get('auth_token')
+      };
+      displayUserData(userData);
+    }
+  </script>
+</body>
+</html>
