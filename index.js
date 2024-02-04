@@ -35,7 +35,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/extra/up', (req, res) => {
-  res.send('If you see this, the server is up!');
+  res.send('If you see this, the server is up! The API should work fine.');
 });
 
 // Endpoint for uploading extension files
