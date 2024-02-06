@@ -25,6 +25,12 @@ const generateRandomCode = () => {
   return Math.floor(100000 + Math.random() * 900000);
 };
 
+function requestLogger(req, res, next) {
+    const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+    console.log(`[${new Date().toISOString()}] ${ip} ${req.method} ${req.url}`);
+    next();
+}
+
 // Set up Multer for file uploads
 const storage = multer.memoryStorage();
 const upload = multer({
