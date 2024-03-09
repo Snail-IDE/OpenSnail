@@ -3,5 +3,5 @@
   
 A public API used for extensions, and extension development.
 
-Our public API url is:
-https://opensnail.onrender.com/
+Our public API URL is:
+https://opensnail.snail-ide.com/
