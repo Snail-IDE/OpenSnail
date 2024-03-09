@@ -54,7 +54,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/extra/up', (req, res) => {
-  res.send('If you see this, the server is up! The API should work fine.');
+  res.status(200).send('If you see this, the server is up! The API should work fine.');
 });
 
 app.get('/silly/billy', (req, res) => {
