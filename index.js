@@ -88,7 +88,7 @@ app.post('/api/upload', upload.single('extension'), (req, res) => {
   };
 
   // Return the URL to the uploaded extension
-  const extensionURL = `https://opensnail.onrender.com/api/download/${fileName}`;
+  const extensionURL = `https://opensnail.snail-ide.com/api/download/${fileName}`;
   res.send(extensionURL);
 });
 
