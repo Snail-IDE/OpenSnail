@@ -3,10 +3,46 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Upload JavaScript File</title>
+  <title>Extension Tester</title>
+  <style>
+    body {
+      background-color: #222;
+      color: #ddd;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    h2 {
+      color: #fff;
+    }
+    label {
+      color: #aaa;
+    }
+    input[type="file"], input[type="text"], button {
+      background-color: #333;
+      color: #ddd;
+      border: 1px solid #666;
+      padding: 8px;
+      margin-bottom: 10px;
+    }
+    input[type="file"] {
+      width: 100%;
+    }
+    button {
+      cursor: pointer;
+    }
+    #response {
+      margin-top: 20px;
+    }
+    a {
+      color: #4af;
+    }
+  </style>
 </head>
 <body>
-  <h2>Upload JavaScript File</h2>
+  <h2>Snail IDE Extension Tester</h2>
+  <p>Test your extensions without an http-server by using this tool.</p>
+  <br>
+  <p>Note: Files are only stored for 15 minutes, then they are deleted, but if the OpenSnail repository gets a new commit, they will immeditaly reset. Do NOT use this in projects you plan on sharing they WILL be corrupted. Only use this to test.</p>
   <form id="uploadForm" enctype="multipart/form-data">
     <label for="file">Choose a JavaScript file:</label><br>
     <input type="file" id="file" name="extension" accept=".js"><br>
