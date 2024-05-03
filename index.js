@@ -45,9 +45,6 @@ app.use(express.static(__dirname));
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
-app.get('/tempshare', (req, res) => {
-  res.sendFile(path.join(__dirname, 'tempshare.html'));
-});
 
 app.get('/extra/up', (req, res) => {
   res.status(200).send('If you see this, the server is up! The API should work fine.');
@@ -73,7 +70,7 @@ app.post('/api/upload', upload.single('extension'), (req, res) => {
     uploadTime: Date.now()
   };
 
-  const extensionURL = `https://opensnail.snail-ide.com/api/download/tempshare/${randomCode}`;
+  const extensionURL = `https://opensnail.snail-ide.com/api/download/${randomCode}`;
   res.send(extensionURL);
 });
 
